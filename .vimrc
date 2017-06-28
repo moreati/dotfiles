@@ -1,23 +1,59 @@
-set nocompatible    " Don't pretend to be vi
-set modeline        " Customize settings based on modeline in indvidual files
-set esckeys         " Cursor keys in insert mode
-
-set autoindent      " Indent a new line based on indent of the current line
-set smartindent     " Smarter autoindent based on e.g. {, }, and keywords
-
-set expandtab       " Insert spaces instead of tab characters
-set shiftwidth=4    " Number of spaces in a level of (auto)indent
-set softtabstop=4   " <Tab>/<BS> insert/delete space as if tabstop has this val
-set smarttab        " <Tab>/<BS> at the start of a line follow shiftwidth
+set nocompatible    " Enable Vim features, don't maintain Vi compatibility
+set modeline        " All individual files to customised settings
 
 set backspace=indent,eol,start
-set display=lastline    " Don't render partial lines as @@@@@@@
 
-set hlsearch
-set incsearch
+" Indenting
+set autoindent      " Indent a new line the same as the current line, or ...
+"set smartindent     " Smarter autoindent based on e.g. {, }, and keywords
+                    " Don't use this in combination with filetype plugin
+set expandtab       " Insert spaces instead of tab characters
+set shiftwidth=4    " Number of spaces in a level of (auto)indent
+set softtabstop=4   " <Tab>/<BS> indent or dedent as if tabstop has this val
+set smarttab        " <Tab>/<BS> at the start of a line follow shiftwidth
+
+" Searching
+set hlsearch        " Highlight search terms
+set incsearch       " Jump to the first match as a search is typed
+set ignorecase      " Search case insensitively by default
+set smartcase       " Search case sensitively if the term contains uppercase
+
+" Appearence
+set display=lastline    " Don't render partial lines as @@@@@@@
+set formatoptions+=r    " Insert the comment leader after <Enter> is typed
+set number              " Show line numbers
+highlight LineNr ctermfg=darkgray
+set ruler               " Show cursor position on the last line or status line
+set cursorline          " Highlight current line
+set list                " Render special chars (tabs as ^I, line ends as $)
+set listchars=tab:\ \ ,trail:·
+                        " Show trailing whitespace, e.g. these spaces    
+
+" Behaviour
+set confirm         " Ask to save changes when quitting
+set wildmenu        " Show autocomplete options for :somec<Tab>
+
+"Keyboard shortcuts
+"
+"       Insert  Normal  Visual  Select    Op     Command  Lang
+"                                       pending   line    Arg
+" map             X       X       X       X
+" nmap            X
+" vmap                    X       X
+" smap                            X
+" xmap                    x
+" omap                                    X
+" map!    X                                         X
+" imap    X
+" lmap    X                                         X      X
+" cmap                                              X
+
+" Ctrl+L to hide search highlights, then redraw screen
+nnoremap <C-L> :nohighlight<CR><C-L>
+" Shift+Tab to dedent
+inoremap <S-Tab> <C-d>
 
 if has('cmdline_info')
-    set ruler       " Show line/col/position of the curser
     " From http://static.gpicon.org/code/vimrc.html
     "set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " Ruler on steroids
     set showcmd     " Partial cmds in status line/selection in visual mode
@@ -28,17 +64,12 @@ if has('statusline')
     "set statusline=%<%f\ %=\:\b%n%y%m%r%w\ %l,%c%V\ %P 
 endif
 
-if has('mouse')
-    set mouse=a     " Move cursor in response to mouse clicks
-endif
-
-execute pathogen#infect()
-
-syntax on       " Syntax highlighting
-set cursorline  " Highlight current line 
+" Mouse behaviour
+set mouse=a             " Move cursor in response to mouse clicks
+set mousemodel=popup    " Show right-click menu, don't extend selection
 
 if has('gui_running')
-    set showtabline=2	" Always show document tabs	
+    set showtabline=1   " Show tab bar (0:never, 1:if 2+ docs, 2:always)
     set guioptions-=T   " Hide toolbar
     set guioptions+=e   " Draw document tabs using GUI toolkit?
     set guioptions-=t   " Hide menu tear offs
@@ -49,12 +80,9 @@ if has('gui_running')
     set number
 endif
 
-" Filetype specific settings
-if has('osfiletype')
-    filetype on     " Sniff filetypes on open, TODO Other tweaks, plugins?
-    filetype plugin on
-    filetype indent on
-endif
+filetype on         " Enable file type detection
+filetype plugin on  " Load plugins, customizes vim per filetype
+filetype indent on  " Set indentation/tabs based on filetype
 
 if has('autocmd')
     augroup python
@@ -65,6 +93,15 @@ if has('autocmd')
         autocmd BufReadPre,FileReadPre    *.xml set tabstop=2
         autocmd BufReadPre,FileReadPre    *.xml set matchpairs+=<:>
     augroup END
-    
+
     " TODO vimrc, sql, html, css, php, asp, jsp, properties, axl
 endif
+
+" Load the bundled matchit.vim, if no newer version installed as a plugin
+" matchit.vim extends % (jump-to-matching delimiter)
+"if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
+"    runtime! macros/matchit.vim
+"endif
+
+" TODO
+" - Window title/tab titles with intelligent uniqueness
