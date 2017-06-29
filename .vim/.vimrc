@@ -1,5 +1,5 @@
 set nocompatible    " Enable Vim features, don't maintain Vi compatibility
-set modeline        " All individual files to customise settings
+set modeline        " Allow individual files to customise settings
 
 set backspace=indent,eol,start
 
