@@ -33,6 +33,7 @@ set listchars=tab:\ \ ,trail:·
 " Behaviour
 set confirm         " Ask to save changes when quitting
 set wildmenu        " Show autocomplete options for :foo<Tab>
+set viminfo+=n~/.vim/viminfo
 
 "Keyboard shortcuts
 "
