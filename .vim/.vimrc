@@ -50,7 +50,7 @@ set wildmenu        " Show autocomplete options for :foo<Tab>
 " cmap                                              X
 
 " Ctrl+L to hide search highlights, then redraw screen
-nnoremap <C-L> :nohighlight<CR><C-L>
+nnoremap <C-L> :nohlsearch<CR><C-L>
 " Shift+Tab to dedent
 inoremap <S-Tab> <C-d>
 
