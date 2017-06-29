@@ -65,9 +65,10 @@ if has('statusline')
     "set statusline=%<%f\ %=\:\b%n%y%m%r%w\ %l,%c%V\ %P 
 endif
 
-" Mouse behaviour
-set mouse=a             " Move cursor in response to mouse clicks
-set mousemodel=popup    " Show right-click menu, don't extend selection
+if has('mouse')
+    set mouse=a             " Move cursor in response to mouse clicks
+    set mousemodel=popup    " Show right-click menu, don't extend selection
+endif
 
 if has('gui_running')
     set showtabline=1   " Show tab bar (0:never, 1:if 2+ docs, 2:always)
