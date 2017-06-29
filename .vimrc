@@ -1,5 +1,5 @@
 set nocompatible    " Enable Vim features, don't maintain Vi compatibility
-set modeline        " All individual files to customised settings
+set modeline        " All individual files to customise settings
 
 set backspace=indent,eol,start
 
@@ -19,6 +19,7 @@ set ignorecase      " Search case insensitively by default
 set smartcase       " Search case sensitively if the term contains uppercase
 
 " Appearence
+set background=dark     " Assume a dark background, use light text highlights
 set display=lastline    " Don't render partial lines as @@@@@@@
 set formatoptions+=r    " Insert the comment leader after <Enter> is typed
 set number              " Show line numbers
@@ -31,7 +32,7 @@ set listchars=tab:\ \ ,trail:·
 
 " Behaviour
 set confirm         " Ask to save changes when quitting
-set wildmenu        " Show autocomplete options for :somec<Tab>
+set wildmenu        " Show autocomplete options for :foo<Tab>
 
 "Keyboard shortcuts
 "
