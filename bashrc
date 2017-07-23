@@ -10,9 +10,9 @@
 export NAME="Alex Willmer"
 export EMAIL="alex@moreati.org.uk"
 
-# Disable ctrl-s & ctrl-q flow control, aka why did my terminal stop printing?
-stty stop ''
-stty start ''
+# Remove TTY flow control keys, aka why did my terminal just feeze?
+stty stop ''            # Flow stop (default ctrl-s)
+stty start ''           # Flow start (default ctrl-z)
 stty -ixon
 stty -ixoff
 
@@ -26,9 +26,7 @@ HISTCONTROL=ignoredups:ignorespace
 HISTSIZE=1000
 HISTFILESIZE=2000
 
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-shopt -s checkwinsize
+shopt -s checkwinsize   # Update $LINES and $COLUMNS after each command
 
 
 if [ -x /usr/share/vim/vim74/macros/less.sh ]; then
