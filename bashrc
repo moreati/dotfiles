@@ -79,5 +79,4 @@ pathappend "$BUILD_TOP/bootrom-tools"
 export PYTHONSTARTUP=~/.pythonrc
 
 [ -f ~/.bash_aliases ] && . ~/.bash_aliases
-[ -f ~/.autoenv/activate.sh ] && ~/.autoenv/activate.sh
 [ -f ~/.liquidprompt/liquidprompt ] && . ~/.liquidprompt/liquidprompt
