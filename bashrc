@@ -26,6 +26,7 @@ HISTCONTROL=ignoredups:ignorespace
 HISTSIZE=1000
 HISTFILESIZE=2000
 
+shopt -s checkhash      # Check hashed commands exist before executing them
 shopt -s checkwinsize   # Update $LINES and $COLUMNS after each command
 
 
