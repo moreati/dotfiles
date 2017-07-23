@@ -49,12 +49,12 @@ fi
 
 
 # Go will download to $GOPATH/src and install binaries to $GOPATH/bin
-GOPATH=$HOME/.local
+GOPATH="$HOME/.local/go"
 
 LD_LIBRARY_PATH="$HOME/.local/lib:$LD_LIBRARY_PATH"
 
 # NPM packages in homedir
-NPM_PACKAGES="$HOME/.npm-packages"
+NPM_PACKAGES="$HOME/.local/npm-packages"
 NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
 
 unset MANPATH
