@@ -1,0 +1,60 @@
+#!/usr/bin/env python3
+"""Symlink dotfiles into a home directory."""
+
+import argparse
+import fnmatch
+import os
+
+SKIP_PATTERNS = {
+    '.*',
+    'README*',
+    os.path.basename(__file__) + '*',
+}
+
+SRCBASE = os.path.abspath(os.path.dirname(__file__))
+DSTBASE = os.path.expanduser('~')
+
+
+def fnmatches(name, patterns):
+    return any(fnmatch.fnmatch(name, p) for p in patterns)
+
+
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument('-f', '--force', action='store_true',
+                    help='Overwrite existing files')
+args = parser.parse_args()
+
+for dirpath, dnames, fnames in os.walk(SRCBASE):
+    # Create directories (e.g. for ./vim/plugins create ~/.vim/plugins)
+    for d in dnames:
+        if fnmatches(d, SKIP_PATTERNS):
+            dnames.remove(d)
+            continue
+
+        src_abspath = os.path.join(dirpath, d)
+        src_relpath = os.path.relpath(src_abspath, SRCBASE)
+        dst_abspath = os.path.join(DSTBASE, '.' + src_relpath)
+
+        try:
+            os.mkdir(dst_abspath)
+        except FileExistsError:
+            pass
+
+    # Symlink files (e.g. link ./bashrc create ~/.bashrc relative link)
+    for f in fnames:
+        if fnmatches(f, SKIP_PATTERNS):
+            fnames.remove(f)
+            continue
+        src_abspath = os.path.join(dirpath, f)
+        src_relpath = os.path.relpath(src_abspath, SRCBASE)
+        dst_abspath = os.path.join(DSTBASE, '.' + src_relpath)
+        dst_dirname = os.path.dirname(dst_abspath)
+        dst_rellink = os.path.relpath(src_abspath, dst_dirname)
+
+        if args.force:
+            try:
+                os.unlink(dst_abspath)
+            except FileNotFoundError:
+                pass
+
+        os.symlink(dst_rellink, dst_abspath)
