@@ -58,3 +58,5 @@ for dirpath, dnames, fnames in os.walk(SRCBASE):
                 pass
 
         os.symlink(dst_rellink, dst_abspath)
+
+# vim: filetype=python
