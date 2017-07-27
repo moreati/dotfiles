@@ -8,7 +8,7 @@ import os
 SKIP_PATTERNS = {
     '.*',
     'README*',
-    os.path.basename(__file__) + '*',
+    os.path.basename(__file__),
 }
 
 SRCBASE = os.path.abspath(os.path.dirname(__file__))
