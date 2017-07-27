@@ -1,0 +1,2 @@
+set colored-stats on            # Highlight completions according to LS_COLORS
+set match-hidden-files off      # Exclude hidden files from completions
