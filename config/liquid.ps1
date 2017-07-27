@@ -44,8 +44,7 @@ LP_PS1="${LP_PS1}${LP_RUNTIME}${LP_MARK_PREFIX}${LP_MARK}${LP_PS1_POSTFIX}"
 
 # "invisible" parts
 # Get the current prompt on the fly and make it a title
-#LP_TITLE="$(_lp_title "$LP_PS1")"
-LP_TITLE="\[\e]0;\w\a\]"
+LP_TITLE="$(_lp_title "${LP_USER}${LP_HOST}${LP_PWD}")"
 
 # Insert it in the prompt
 LP_PS1="${LP_TITLE}${LP_PS1}"
