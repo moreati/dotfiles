@@ -1,0 +1,15 @@
+autom4te.cache/
+
+*.pyc
+__pycache__/
+
+/e/
+/env/
+/v/
+/venv/
+/.venv/
+
+.cache/
+.hypothesis/
+
+.idea/

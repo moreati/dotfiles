@@ -1,0 +1,47 @@
+[core]
+excludesfile = .gitignore
+
+[alias]
+co = checkout
+st = status -s
+
+[transfer]
+fsckobjects = true
+
+[push]
+# If no remote branch is specified use the same name as the local branch
+default = current
+
+[sendemail]
+smtpEncryption = tls
+smtpServer = smtp.gmail.com
+smtpUser = alex@moreati.org.uk
+smtpServerPort = 587
+suppressFrom = true
+
+[credential]
+#helper = git-credential-gnome-keyring
+
+[gui]
+editor = gedit
+
+[cola]
+# Whether to automatically break long lines when editing commit messages
+linebreak = true
+
+[diff]
+tool = meld
+
+[merge]
+tool = meld
+
+[url "git://github.com/"]
+insteadOf = https://github.com/
+
+[url "git@github.com:"]
+pushInsteadOf = "git://github.com/"
+
+[url "git@github.com:"]
+pushInsteadOf = "https://github.com/"
+
+# vim: set filetype=dosini
