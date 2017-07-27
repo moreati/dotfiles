@@ -80,7 +80,6 @@ if has('gui_running')
     set guicursor+=a:blinkoff1000
     set guifont=Ubuntu\ Mono\ 12
     set columns=85
-    set number
 endif
 
 filetype on         " Enable file type detection
