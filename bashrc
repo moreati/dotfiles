@@ -49,7 +49,7 @@ fi
 
 
 # Go will download to $GOPATH/src and install binaries to $GOPATH/bin
-GOPATH="$HOME/.local/go"
+export GOPATH="$HOME/.local/go"
 
 LD_LIBRARY_PATH="$HOME/.local/lib:$LD_LIBRARY_PATH"
 
