@@ -1,0 +1,6 @@
+#!/bin/bash
+
+setxkbmap -option 'caps:ctrl_modifier'
+if command -v xscape; then
+    xscape -e 'Caps_Lock=Escape' &
+fi
