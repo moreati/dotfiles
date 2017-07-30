@@ -6,7 +6,6 @@ import fnmatch
 import os
 
 SKIP_PATTERNS = {
-    '.*',
     'README*',
     os.path.basename(__file__),
 }
@@ -24,39 +23,31 @@ parser.add_argument('-f', '--force', action='store_true',
                     help='Overwrite existing files')
 args = parser.parse_args()
 
-for dirpath, dnames, fnames in os.walk(SRCBASE):
-    # Create directories (e.g. for ./vim/plugins create ~/.vim/plugins)
-    for d in dnames:
-        if fnmatches(d, SKIP_PATTERNS):
-            dnames.remove(d)
-            continue
+os.chdir(SRCBASE)
 
-        src_abspath = os.path.join(dirpath, d)
-        src_relpath = os.path.relpath(src_abspath, SRCBASE)
-        dst_abspath = os.path.join(DSTBASE, '.' + src_relpath)
+for line in os.popen('git ls-files'):
+    src_relpath = line.rstrip('\n')
+    dst_relpath = '.' + src_relpath
+    src_reldir, src_filename = os.path.split(src_relpath)
+    dst_reldir, dst_filename = os.path.split(dst_relpath)
 
+    dst_absdir = os.path.join(DSTBASE, dst_reldir)
+    if src_reldir:
+        os.makedirs(dst_absdir, exist_ok=True)
+
+    if fnmatches(src_filename, SKIP_PATTERNS):
+        continue
+
+    src_abspath = os.path.join(SRCBASE, src_relpath)
+    dst_abspath = os.path.join(DSTBASE, dst_relpath)
+    dst_rellink = os.path.relpath(src_abspath, dst_absdir)
+
+    if args.force:
         try:
-            os.mkdir(dst_abspath)
-        except FileExistsError:
+            os.unlink(dst_abspath)
+        except FileNotFoundError:
             pass
 
-    # Symlink files (e.g. link ./bashrc create ~/.bashrc relative link)
-    for f in fnames:
-        if fnmatches(f, SKIP_PATTERNS):
-            fnames.remove(f)
-            continue
-        src_abspath = os.path.join(dirpath, f)
-        src_relpath = os.path.relpath(src_abspath, SRCBASE)
-        dst_abspath = os.path.join(DSTBASE, '.' + src_relpath)
-        dst_dirname = os.path.dirname(dst_abspath)
-        dst_rellink = os.path.relpath(src_abspath, dst_dirname)
-
-        if args.force:
-            try:
-                os.unlink(dst_abspath)
-            except FileNotFoundError:
-                pass
-
-        os.symlink(dst_rellink, dst_abspath)
+    os.symlink(dst_rellink, dst_abspath)
 
 # vim: filetype=python
