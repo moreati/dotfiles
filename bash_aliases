@@ -41,4 +41,6 @@ alias reloadwl="sudo modprobe -r wl && sudo modprobe wl"
 
 alias xo="xdg-open"
 
+alias xsudo="xhost +si:localuser:root && sudo"
+
 # vim: set et sts=4 sw=4 tw=120 ft=sh:
