@@ -7,7 +7,6 @@ if [ "$(diff --version | sed -nre 's/[^0-9]+3\.([0-9]+)/\1/p')" -gt 3 ]; then
     alias diff="diff --color=auto"
 fi
 
-alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
@@ -23,9 +22,9 @@ alias geditn="gedit --new-window"
 
 alias gitthis="git init . && git add . && git commit -m 'Git some' | grep -v '^ create mode'"
 
-alias ll="ls -l --human-readable --group-directories-first"
-alias la="ls --almost-all --group-directories-first"
-alias l="ls --group-directories-first"
+alias ls="ls --color=auto --group-directories-first"
+alias ll="ls -l --human-readable"
+alias la="ls --almost-all"
 
 alias mounth="mount | grep --color=never '^/'| sed -r 's/ (type|on) / /g' | column -t"
 
