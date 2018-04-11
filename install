@@ -48,6 +48,10 @@ for line in os.popen('git ls-files'):
         except FileNotFoundError:
             pass
 
-    os.symlink(dst_rellink, dst_abspath)
+    try:
+        os.symlink(dst_rellink, dst_abspath)
+    except FileExistsError as e:
+        if os.readlink(dst_abspath) != dst_rellink:
+            raise
 
 # vim: filetype=python
