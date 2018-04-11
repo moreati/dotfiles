@@ -16,6 +16,13 @@ alias cd...="cd ../.."
 
 alias dh="df -h -xtmpfs -xdevtmpfs"
 
+dkkillall() { local p=$(docker ps -q); if [[ -n $p ]]; then docker kill $p; fi }
+dkstopall() { local p=$(docker ps -q); if [[ -n $p ]]; then docker stop $p; fi }
+dkrmall()   { local p=$(docker ps -q); if [[ -n $p ]]; then docker rm   $p; fi }
+dksh() {
+    docker exec -it $1 /bin/bash
+}
+
 alias findpy="find -name '*.py'"
 
 alias geditn="gedit --new-window"
