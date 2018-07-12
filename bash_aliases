@@ -39,6 +39,8 @@ alias octave="octave --quiet"
 
 alias reloadwl="sudo modprobe -r wl && sudo modprobe wl"
 
+top() { tput smcup; top; tput rmcup; }
+
 alias xo="xdg-open"
 
 alias xsudo="xhost +si:localuser:root && sudo"
