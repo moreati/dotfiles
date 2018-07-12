@@ -30,15 +30,15 @@ shopt -s checkhash      # Check hashed commands exist before executing them
 shopt -s checkwinsize   # Update $LINES and $COLUMNS after each command
 
 
-if [ -x /usr/share/vim/vim74/macros/less.sh ]; then
-    alias less=/usr/share/vim/vim74/macros/less.sh
-else
-    # make less more friendly for non-text input files, see lesspipe(1)
-    [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-    # Display ANSI color escape sequences, use smart case-sensitivity searches
-    LESS="--RAW-CONTROL-CHARS --ignore-case"
-fi
+# To do 'paging as needed' git etc  LESS="-FRX", iif $LESS is not set.
+# As a result setting LESS causes git output to always show in a full screen
+# less session, unless an override is also set in .gitconfig.
+# Display ANSI color escape sequences
+# use smart case-sensitivity searches
+export LESS="--RAW-CONTROL-CHARS --ignore-case"
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
