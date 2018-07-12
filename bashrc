@@ -60,9 +60,6 @@ NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
 unset MANPATH
 MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
 
-# Moto Mods development
-export BUILD_TOP=$HOME/src
-
 function pathappend() {
     local dir="$1"
     if [[ ! $PATH =~ (^|:)$dir(:|$) ]]; then
@@ -73,8 +70,6 @@ function pathappend() {
 pathappend "$HOME/.local/bin"
 pathappend "$HOME/.cargo/bin"
 pathappend "$NPM_PACKAGES/bin"
-pathappend "$BUILD_TOP/manifesto"
-pathappend "$BUILD_TOP/bootrom-tools"
 
 export PYTHONSTARTUP=~/.pythonrc
 
