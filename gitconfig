@@ -5,6 +5,7 @@ pager = less -FRX
 [alias]
 co = checkout
 st = status -s
+pum = pull upstream master
 
 [transfer]
 fsckobjects = true
