@@ -75,3 +75,5 @@ export PYTHONSTARTUP=~/.pythonrc
 
 [ -f ~/.bash_aliases ] && . ~/.bash_aliases
 [ -f ~/.liquidprompt/liquidprompt ] && . ~/.liquidprompt/liquidprompt
+
+# vim: filetype=sh
