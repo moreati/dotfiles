@@ -20,7 +20,7 @@ set smartcase       " Search case sensitively if the term contains uppercase
 
 " Appearence
 set background=dark     " Assume a dark background, use light text highlights
-set display=lastline    " Don't render partial lines as @@@@@@@
+set display+=lastline   " Don't render partial lines as @@@@@@@
 set formatoptions+=r    " Insert comment leader after <Enter> in insert mode
 set number              " Show line numbers
 highlight LineNr ctermfg=darkgray
