@@ -21,7 +21,7 @@ set smartcase       " Search case sensitively if the term contains uppercase
 " Appearence
 set background=dark     " Assume a dark background, use light text highlights
 set display=lastline    " Don't render partial lines as @@@@@@@
-set formatoptions+=r    " Insert the comment leader after <Enter> is typed
+set formatoptions+=r    " Insert comment leader after <Enter> in insert mode
 set number              " Show line numbers
 highlight LineNr ctermfg=darkgray
 set ruler               " Show cursor position on the last line or status line
@@ -61,7 +61,7 @@ inoremap <S-Tab> <C-d>
 if has('cmdline_info')
     " From http://static.gpicon.org/code/vimrc.html
     "set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " Ruler on steroids
-    set showcmd     " Partial cmds in status line/selection in visual mode
+    set showcmd     " Show commands/selection size in last line of screen
 endif
 
 if has('statusline')
