@@ -1,3 +1,4 @@
 # Highlight completions according to LS_COLORS
 set colored-stats on
 set match-hidden-files off      # Exclude hidden files from completions
+set skip-completed-text on      # Include text right of cursor in completions
