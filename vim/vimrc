@@ -25,6 +25,7 @@ set formatoptions+=r    " Insert the comment leader after <Enter> is typed
 set number              " Show line numbers
 highlight LineNr ctermfg=darkgray
 set ruler               " Show cursor position on the last line or status line
+set rulerformat=%=L%l:C%c\ %P "Right align, line, column, position in file
 set cursorline          " Highlight current line
 set list                " Render special chars (tabs as ^I, line ends as $)
 set listchars=tab:\ \ ,trail:·
