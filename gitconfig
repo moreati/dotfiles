@@ -24,7 +24,7 @@ suppressFrom = true
 #helper = git-credential-gnome-keyring
 
 [gui]
-editor = gedit
+editor = kate
 
 [cola]
 # Whether to automatically break long lines when editing commit messages
