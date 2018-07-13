@@ -76,4 +76,9 @@ export PYTHONSTARTUP=~/.pythonrc
 [ -f ~/.bash_aliases ] && . ~/.bash_aliases
 [ -f ~/.liquidprompt/liquidprompt ] && . ~/.liquidprompt/liquidprompt
 
+#export PATH="$HOME/.pyenv/bin:$PATH"
+#eval "$(pyenv init -)"
+#eval "$(pyenv virtualenv-init -)"
+#pyenv global system 2.4.6 2.5.6 2.6.9 3.3.7 3.4.8 3.5.5
+
 # vim: filetype=sh
